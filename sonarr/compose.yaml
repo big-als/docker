@@ -5,8 +5,8 @@ services:
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - /mnt/docker/stacks/sonarr/postgres/init-sonarr.sql:/docker-entrypoint-initdb.d/init-sonarr.sql:ro
+      - ${POSTGRES_DATA_PATH}:/var/lib/postgresql/data
+      - ${POSTGRES_INIT_PATH}:/docker-entrypoint-initdb.d/init-sonarr.sql:ro
     restart: unless-stopped
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
@@ -18,34 +18,8 @@ services:
       PGID: ${PGID}
       TZ: ${TZ}
     volumes:
-      - sonarr_config:/config
-      - media:/media
+      - ${SONARR_CONFIG_PATH}:/config
+      - ${MEDIA_PATH}:/media
     ports:
       - 8989:8989
     restart: unless-stopped
-
-volumes:
-  postgres_data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /mnt/docker/stacks/sonarr/postgres/data
-  postgres_init:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /mnt/docker/stacks/sonarr/postgres/init-sonarr.sql
-  sonarr_config:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /mnt/docker/stacks/sonarr/sonarr
-  media:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /mnt/Media
