@@ -13,6 +13,7 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
+      - UMASK=${UMASK}
 
 volumes:
   cleanuparr:
