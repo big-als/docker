@@ -6,7 +6,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - postgres_init:/docker-entrypoint-initdb.d/init-sonarr.sql:ro
+      - /mnt/docker/stacks/sonarr/postgres/init-sonarr.sql:/docker-entrypoint-initdb.d/init-sonarr.sql:ro
     restart: unless-stopped
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
