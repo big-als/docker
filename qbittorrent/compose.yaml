@@ -1,0 +1,31 @@
+services:
+  qittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - qbittorrent:/config
+      - /mnt/Media:/media
+    networks:
+      Server-Network:
+        ipv4_address: ${STATIC_IP}
+        mac_address: ${STATIC_MAC}
+    restart: unless-stopped
+
+volumes:
+  qbittorrent:
+
+networks:
+  Server-Network:
+    driver: macvlan
+    driver_opts:
+      parent: ${NETWORK_PARENT}
+    ipam:
+      driver: default
+      config:
+        - subnet: ${NETWORK_SUBNET}
+          ip_range: ${NETWORK_IP_RANGE}
+          gateway: ${NETWORK_GATEWAY}
