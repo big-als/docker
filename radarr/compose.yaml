@@ -1,0 +1,25 @@
+services:
+  postgres:
+    image: postgres:14
+    container_name: radarr-postgres
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ${POSTGRES_DATA_PATH}:/var/lib/postgresql/data
+      - ${POSTGRES_INIT_PATH}:/docker-entrypoint-initdb.d/init-radarr.sql:ro
+    restart: unless-stopped
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    depends_on:
+      - postgres
+    environment:
+      PUID: ${PUID}
+      PGID: ${PGID}
+      TZ: ${TZ}
+    volumes:
+      - ${RADARR_CONFIG_PATH}:/config
+      - ${MEDIA_PATH}:/media
+    ports:
+      - 7878:7878
+    restart: unless-stopped
