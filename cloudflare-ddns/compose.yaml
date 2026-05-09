@@ -1,0 +1,11 @@
+services:
+  Cloudflare:
+    restart: unless-stopped
+    image: alexhorst/cloudflare-ddns:alpine
+    environment:
+      - CF_EMAIL=${CF_EMAIL}
+      - CF_API_TOKEN=${CF_API_TOKEN}
+      - CF_ZONE_ID=${CF_ZONE_ID}
+      - CF_RECORD_NAME=${CF_RECORD_NAME}
+      - TZ=${TZ}
+      - CHECK_INTERVAL=${CHECK_INTERVAL}
