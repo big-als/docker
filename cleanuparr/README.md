@@ -11,7 +11,7 @@ Cleanuparr is a media library cleanup tool. It removes empty folders, moves or d
 - Service port: `11011`
 - Uses the `cleanuparr` volume for configuration and state
 - Mounts `/mnt/Media` for cleanup operations
-- `example.env` should be copied to `.env` and customized before deployment
+- `example.env` should be copied to `.env` and customized before deployment for Portainer import. The compose file does not automatically consume `.env`; add an `env_file` entry or use `docker compose --env-file <service>/.env` if running with Docker Compose CLI.
 - Docker image: [ghcr.io/cleanuparr/cleanuparr](https://github.com/cleanuparr/cleanuparr)
 
 ## Notes

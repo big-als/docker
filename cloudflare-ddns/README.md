@@ -18,5 +18,5 @@ This service keeps a DNS record updated with your public IP address using Cloudf
 - Docker image: [alexhorst/cloudflare-ddns](https://hub.docker.com/r/alexhorst/cloudflare-ddns)
 
 ## Notes
-- Copy `example.env` to `.env` and configure the Cloudflare credentials before starting.
+- Copy `example.env` to `.env` and configure the Cloudflare credentials before starting for Portainer import. The provided compose file does not automatically consume `.env`; add an `env_file` entry or use `docker compose --env-file <service>/.env` if using Docker Compose CLI.
 - Ensure the API token has permission to edit DNS records for the specified zone.

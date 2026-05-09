@@ -11,7 +11,7 @@ Seerr is the request and discovery front-end for the media stack. It allows user
 - Service port: `5055`
 - Stores config in the `seerr` volume
 - Environment variables include `LOG_LEVEL` and `TZ`
-- `example.env` should be copied to `.env` and configured before deployment
+- `example.env` should be copied to `.env` and configured before deployment for Portainer import. The compose file does not automatically consume `.env`; add an `env_file` entry or use `docker compose --env-file <service>/.env` if running with Docker Compose CLI.
 - Docker image: [ghcr.io/seerr-team/seerr](https://github.com/seerr-team/seerr)
 
 ## Notes

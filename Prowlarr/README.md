@@ -10,7 +10,7 @@ Prowlarr is the indexer manager for this stack. It aggregates indexers, manages 
 ## Configuration
 - Service port: `9696`
 - Stores config in the `prowlarr` volume
-- `example.env` should be copied to `.env` and configured with your desired values
+- `example.env` should be copied to `.env` and configured with your desired values for Portainer import. The compose file does not automatically consume `.env`; add an `env_file` entry or use `docker compose --env-file <service>/.env` if running with Docker Compose CLI.
 - Docker image: [linuxserver/prowlarr](https://hub.docker.com/r/linuxserver/prowlarr)
 
 ## Notes

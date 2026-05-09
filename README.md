@@ -38,15 +38,15 @@ This stack provides a complete media server solution with integrated services fo
 ## Prerequisites
 
 - Docker and Docker Compose installed
-- Host paths configured:
+- Host paths configured (paths may vary depending on your setup):
   - `/mnt/Media` - Media library directory
   - `/mnt/docker/stacks/` - Service configuration directories
-- Environment files configured for each service
+- Environment templates available for each service (used for Portainer import, not referenced by compose.yaml)
 
 ## Quick Start
 
 1. Clone this repository
-2. Copy `example.env` files to `.env` in each service directory and customize values
+2. Copy `example.env` files to `.env` in each service directory and customize values for Portainer import. If you prefer Docker Compose CLI, add an `env_file` entry to the compose YAML or launch with `docker compose --env-file <service>/.env -f <service>/compose.yaml up -d`
 3. Deploy individual services or the full stack:
 
    ```bash
@@ -58,11 +58,13 @@ This stack provides a complete media server solution with integrated services fo
 
 ## Configuration
 
-Each service folder contains an `example.env` file with all required environment variables. Copy and customize these files:
+Each service folder contains an `example.env` file with all required environment variables. Copy and customize these files for Portainer import. The provided compose YAML files do not automatically reference `.env` files.
 
 ```bash
 cp <service>/example.env <service>/.env
 ```
+
+If you want Docker Compose to load the `.env` file, add an `env_file` section to the service compose.yaml or pass `--env-file <service>/.env` when launching the stack.
 
 Key configuration points:
 - Portainer variables are used for sensitive data and paths

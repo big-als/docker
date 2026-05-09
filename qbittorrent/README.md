@@ -16,6 +16,6 @@ qBittorrent is the torrent client in this stack. It downloads and seeds torrent 
 - Docker image: [linuxserver/qbittorrent](https://hub.docker.com/r/linuxserver/qbittorrent)
 
 ## Notes
-- Copy `example.env` to `.env` and customize the network settings, static IP, and MAC address.
+- Copy `example.env` to `.env` and customize the network settings, static IP, and MAC address for Portainer bulk import. The provided compose file does not automatically consume `.env`; add an `env_file` entry or use `docker compose --env-file <service>/.env` if running with Docker Compose CLI.
 - Verify your host network supports macvlan before deploying.
 - Use the qBittorrent Web UI to configure download clients and paths.
