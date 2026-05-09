@@ -67,8 +67,28 @@ cp <service>/example.env <service>/.env
 Key configuration points:
 - Portainer variables are used for sensitive data and paths
 - qBittorrent uses static IP/MAC for VPN routing
-- Sonarr and Radarr use PostgreSQL databases
+- Sonarr and Radarr use PostgreSQL databases (see PostgreSQL Setup below)
 - Cloudflare services require API tokens and zone IDs
+
+### PostgreSQL Setup
+
+Sonarr and Radarr are configured to use PostgreSQL databases for improved performance and reliability. Each service requires two databases: a main database for configuration/history and a log database for events.
+
+#### Database Initialization
+Use the provided SQL scripts to create the required databases and users:
+
+- **Sonarr**: Run `sonarr/init-sonarr.sql` on your PostgreSQL server
+- **Radarr**: Run `radarr/init-radarr.sql` on your PostgreSQL server
+
+These scripts create the databases (`sonarr-main`/`radarr-main` and `sonarr-log`/`radarr-log`) and grant privileges to dedicated users.
+
+#### Application Configuration
+Update the `config.xml` file in each service's config directory with PostgreSQL connection details. Example configurations are provided:
+
+- **Sonarr**: `sonarr/example-config.xml`
+- **Radarr**: `radarr/example-config.xml`
+
+Merge the PostgreSQL settings into your existing `config.xml` and restart the services to apply changes.
 
 ## Notes
 
