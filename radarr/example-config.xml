@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config>
+  <!-- Other settings can be added here as needed -->
+  <!-- PostgreSQL Database Configuration -->
+  <PostgresUser>radarr</PostgresUser>
+  <PostgresPassword>your_password</PostgresPassword>
+  <PostgresPort>5432</PostgresPort>
+  <PostgresHost>postgres</PostgresHost>
+  <PostgresMainDb>radarr-main</PostgresMainDb>
+  <PostgresLogDb>radarr-log</PostgresLogDb>
+  <!-- End PostgreSQL Configuration -->
+</Config>
