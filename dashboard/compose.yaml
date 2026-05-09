@@ -4,14 +4,12 @@ services:
     container_name: homarr
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - homarr-configs:/app/data/configs
-      - homarr-icons:/app/public/icons
-      - homarr-data:/data
+      - homarr-data:/app/data
     ports:
       - 7575:7575
+    environment:
+      SECRET_ENCRYPTION_KEY: ${SECRET_ENCRYPTION_KEY}
     restart: unless-stopped
 
 volumes:
-  homarr-configs:
-  homarr-icons:
   homarr-data:
