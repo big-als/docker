@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config>
+  <!-- Other settings can be added here as needed -->
+  <!-- PostgreSQL Database Configuration -->
+  <PostgresUser>sonarr</PostgresUser>
+  <PostgresPassword>your_password</PostgresPassword>
+  <PostgresPort>5432</PostgresPort>
+  <PostgresHost>postgres</PostgresHost>
+  <PostgresMainDb>sonarr-main</PostgresMainDb>
+  <PostgresLogDb>sonarr-log</PostgresLogDb>
+  <!-- End PostgreSQL Configuration -->
+</Config>
