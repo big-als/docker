@@ -23,7 +23,7 @@ This stack provides a complete media server solution with integrated services fo
 - **Seerr** - Media discovery and request management (port 5055)
 
 ### Downloading & Torrenting
-- **qBittorrent** - Torrent client with VPN routing
+- **qBittorrent** - Torrent client
 - **Prowlarr** - Centralized indexer/tracker management (port 9696)
 
 ### Maintenance
@@ -66,7 +66,7 @@ cp <service>/example.env <service>/.env
 
 Key configuration points:
 - Portainer variables are used for sensitive data and paths
-- qBittorrent uses static IP/MAC for VPN routing
+- qBittorrent uses static IP/MAC addressing
 - Sonarr and Radarr use PostgreSQL databases (see PostgreSQL Setup below)
 - Cloudflare services require API tokens and zone IDs
 
