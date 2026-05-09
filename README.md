@@ -14,6 +14,7 @@ This stack provides a complete media server solution with integrated services fo
 - DNS management (Cloudflare DDNS)
 - KMS activation
 - Container management (Portainer)
+- Home dashboard (Homarr)
 
 ## Services
 
@@ -34,6 +35,9 @@ This stack provides a complete media server solution with integrated services fo
 - **Cloudflare Tunnel** - Secure tunneling to Cloudflare
 - **Cloudflare DDNS** - Dynamic DNS for Cloudflare domains
 - **KMS** - KMS server for Windows/Office activation
+
+### Dashboard
+- **Homarr** - Home dashboard with service tiles and Docker container stats (port 7575)
 
 ## Prerequisites
 
@@ -106,6 +110,7 @@ docker/
 ├── cleanuparr/
 ├── cloudflare-ddns/
 ├── cloudflare-tunnel/
+├── dashboard/
 ├── KMS/
 ├── Prowlarr/
 ├── portainer/
