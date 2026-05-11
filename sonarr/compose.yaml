@@ -8,11 +8,18 @@ services:
       - ${POSTGRES_DATA_PATH}:/var/lib/postgresql/data
       - ${POSTGRES_INIT_PATH}:/docker-entrypoint-initdb.d/init-sonarr.sql:ro
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     environment:
       PUID: ${PUID}
       PGID: ${PGID}
@@ -23,3 +30,9 @@ services:
     ports:
       - 8989:8989
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:8989/ping || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
