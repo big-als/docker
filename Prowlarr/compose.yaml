@@ -12,7 +12,7 @@ services:
       - 9696:9696
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:9696/ping || exit 1"]
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://127.0.0.1:9696/ping || exit 1"]
       interval: 30s
       timeout: 5s
       retries: 3

@@ -14,7 +14,7 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:11011 || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:11011 || exit 1"]
       interval: 30s
       timeout: 5s
       retries: 3
