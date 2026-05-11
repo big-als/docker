@@ -1,12 +1,13 @@
 services:
   cloudflared:
+    build: .
     image: cloudflare/cloudflared:latest
     restart: unless-stopped
     environment:
       - TUNNEL_TOKEN=${TUNNEL_TOKEN}
     command: tunnel --no-autoupdate run --token ${TUNNEL_TOKEN}
     healthcheck:
-      test: ["CMD", "cloudflared", "tunnel", "list"]
+      test: ["CMD", "ping", "-c", "1", "1.1.1.1"]
       interval: 30s
       timeout: 10s
       retries: 3
