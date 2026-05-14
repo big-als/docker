@@ -22,7 +22,7 @@ Homarr is a home dashboard for navigating self-hosted services with live Docker 
 
 2. Deploy via Portainer stack import or Docker Compose CLI:
    ```bash
-   docker compose -f dashboard/compose.yaml up -d
+   docker compose --env-file dashboard/.env -f dashboard/compose.yaml up -d
    ```
 
 3. Open `http://<host>:7575` and configure service tiles through the UI.
@@ -33,4 +33,4 @@ Homarr is a home dashboard for navigating self-hosted services with live Docker 
 - The Docker socket is mounted read-only (`:ro`) — Homarr can read container state but cannot control containers.
 - All data (config, database, icons) is stored in the `homarr-data` named volume and persists across container restarts and updates.
 - `SECRET_ENCRYPTION_KEY` must be a 64-character hex string and must not change after initial setup — changing it will invalidate stored credentials.
-- Copy `example.env` to `.env` and customize values before starting. The compose file loads `.env` automatically via `env_file`, resolved relative to the compose file's location.
+- Copy `example.env` to `.env` and customize values before starting for Portainer import. The provided compose file does not automatically consume `.env`; add an `env_file` entry or use `docker compose --env-file dashboard/.env` if running with Docker Compose CLI.
