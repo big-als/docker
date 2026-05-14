@@ -7,8 +7,8 @@ services:
       - homarr-data:/app/data
     ports:
       - 7575:7575
-    environment:
-      SECRET_ENCRYPTION_KEY: ${SECRET_ENCRYPTION_KEY}
+    env_file:
+      - .env
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://127.0.0.1:7575 || exit 1"]
