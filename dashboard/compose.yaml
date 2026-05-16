@@ -4,7 +4,7 @@ services:
     container_name: homarr
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - homarr-data:/app/data
+      - homarr-data:/appdata
     ports:
       - 7575:7575
     environment:
@@ -19,3 +19,8 @@ services:
 
 volumes:
   homarr-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/docker/stacks/dashboard
