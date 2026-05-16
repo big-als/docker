@@ -1,0 +1,48 @@
+services:
+  mariadb:
+    image: mariadb:lts
+    container_name: uptime-kuma-mariadb
+    environment:
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+    volumes:
+      - uptime-kuma-db:/var/lib/mysql
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "healthcheck.sh --connect --innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  uptime-kuma:
+    image: louislam/uptime-kuma:2
+    container_name: uptime-kuma
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      - TZ=${TZ}
+      - UPTIME_KUMA_DB_TYPE=mariadb
+      - UPTIME_KUMA_DB_HOSTNAME=mariadb
+      - UPTIME_KUMA_DB_PORT=3306
+      - UPTIME_KUMA_DB_NAME=${DB_NAME}
+      - UPTIME_KUMA_DB_USERNAME=${DB_USERNAME}
+      - UPTIME_KUMA_DB_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - uptime-kuma:/app/data
+    ports:
+      - 3001:3001
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://127.0.0.1:3001 || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+
+volumes:
+  uptime-kuma:
+  uptime-kuma-db:
