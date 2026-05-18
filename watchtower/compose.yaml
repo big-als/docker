@@ -1,0 +1,14 @@
+services:
+  watchtower:
+    image: nickfedor/watchtower:latest
+    container_name: watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      TZ: ${TZ}
+      WATCHTOWER_SCHEDULE: ${WATCHTOWER_SCHEDULE}
+      WATCHTOWER_CLEANUP: "true"
+      WATCHTOWER_NOTIFICATIONS_LEVEL: "info"
+      WATCHTOWER_NOTIFICATIONS_HOSTNAME: ${WATCHTOWER_NOTIFICATIONS_HOSTNAME}
+      WATCHTOWER_NOTIFICATION_URL: ${WATCHTOWER_NOTIFICATION_URL}
